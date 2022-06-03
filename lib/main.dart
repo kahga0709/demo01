@@ -1,4 +1,4 @@
-import 'package:demo01/home.dart';
+import 'package:demo01/report_line_view.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -25,7 +25,7 @@ class MyApp extends StatelessWidget {
         // is not restarted.
         primarySwatch: Colors.blue,
       ),
-      home: const Home(),
+      home: const ReportLineView(),
     );
   }
 }

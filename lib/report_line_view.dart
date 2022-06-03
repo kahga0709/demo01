@@ -4,8 +4,8 @@ const nameColor = Color(0xff4B5B79);
 const positionColor = Color(0xff727272);
 const buttonColor = Color(0xFFF5F5F5);
 
-class Home extends StatelessWidget {
-  const Home({Key? key}) : super(key: key);
+class ReportLineView extends StatelessWidget {
+  const ReportLineView({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -210,61 +210,64 @@ class _ItemChart extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Row(
-            crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               if (lineWidth > 0) _Line(width: lineWidth),
               child ??
-                  Row(
-                    children: [
-                      CircleAvatar(
-                        radius: radiusAvatar,
-                        backgroundImage: NetworkImage(
-                          pathAvatar ??
-                              "https://www.rd.com/wp-content/uploads/2017/09/01-shutterstock_476340928-Irina-Bg-1024x683.jpg",
+                  Expanded(
+                    child: Row(
+                      children: [
+                        CircleAvatar(
+                          radius: radiusAvatar,
+                          backgroundImage: NetworkImage(
+                            pathAvatar ??
+                                "https://www.rd.com/wp-content/uploads/2017/09/01-shutterstock_476340928-Irina-Bg-1024x683.jpg",
+                          ),
+                          backgroundColor: buttonColor,
+                          child: isActive
+                              ? Container(
+                                  decoration: BoxDecoration(
+                                    shape: BoxShape.circle,
+                                    color: Colors.transparent,
+                                    border: Border.all(
+                                        color: Colors.blue, width: 3),
+                                  ),
+                                )
+                              : null,
                         ),
-                        backgroundColor: buttonColor,
-                        child: isActive
-                            ? Container(
-                                decoration: BoxDecoration(
-                                  shape: BoxShape.circle,
-                                  color: Colors.transparent,
-                                  border:
-                                      Border.all(color: Colors.blue, width: 3),
+                        const SizedBox(width: 8),
+                        Expanded(
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              Text(
+                                name ?? 'Peter Parker',
+                                style: TextStyle(
+                                  color: const Color(0xff4B5B79),
+                                  fontSize: 13,
+                                  fontWeight: isActive
+                                      ? FontWeight.bold
+                                      : FontWeight.normal,
                                 ),
-                              )
-                            : null,
-                      ),
-                      const SizedBox(width: 8),
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        mainAxisSize: MainAxisSize.min,
-                        children: [
-                          Text(
-                            name ?? 'Peter Parker',
-                            style: TextStyle(
-                              color: const Color(0xff4B5B79),
-                              fontSize: 13,
-                              fontWeight: isActive
-                                  ? FontWeight.bold
-                                  : FontWeight.normal,
-                            ),
-                            maxLines: 1,
-                            overflow: TextOverflow.ellipsis,
+                                maxLines: 1,
+                                overflow: TextOverflow.ellipsis,
+                              ),
+                              const SizedBox(height: 2),
+                              Text(
+                                position ?? 'Chief Executive Officer',
+                                style: const TextStyle(
+                                  color: Color(0xff727272),
+                                  fontSize: 12,
+                                  fontWeight: FontWeight.w600,
+                                ),
+                                maxLines: 2,
+                                overflow: TextOverflow.ellipsis,
+                              ),
+                            ],
                           ),
-                          const SizedBox(height: 2),
-                          Text(
-                            position ?? 'Chief Executive Officer',
-                            style: const TextStyle(
-                              color: Color(0xff727272),
-                              fontSize: 12,
-                              fontWeight: FontWeight.w600,
-                            ),
-                            maxLines: 2,
-                            overflow: TextOverflow.ellipsis,
-                          ),
-                        ],
-                      ),
-                    ],
+                        ),
+                      ],
+                    ),
                   ),
             ],
           ),
